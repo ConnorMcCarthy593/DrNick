@@ -19,10 +19,18 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function openPopup() {
-    document.getElementById('popup').style.display = 'block';
+    var popup = document.getElementById('popup');
+     popup.style.display = 'block';
+    //document.getElementById('popup').style.display = 'block';
     document.getElementById('overlay').style.display = 'block';
     console.log('openPopup function called!');
 }
+
+// Optional: Add a function to close the popup
+    window.closePopup = function () {
+        var popup = document.getElementById('popup');
+        popup.style.display = 'none';
+    };
 
 function closePopup() {
     document.getElementById('popup').style.display = 'none';
