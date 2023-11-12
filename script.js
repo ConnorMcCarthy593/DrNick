@@ -1,5 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('submitBtn').addEventListener('click', openPopup);
+     // Wait for the DOM to be fully loaded
+    
+    // Get a reference to the button element by its id
+    var submitButton = document.getElementById('submitBtn');
+
+    // Add an event listener to the button
+    submitButton.addEventListener('click', function () {
+        // This function will be called when the button is clicked
+        openPopup();
+    });
+    
+    //document.getElementById('submitBtn').addEventListener('click', openPopup);
     document.getElementById('overlay').addEventListener('click', closePopup);
     document.getElementById('patientOutcomeForm').addEventListener('submit', function (e) {
         e.preventDefault();
