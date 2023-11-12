@@ -5,85 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PTmeasures - Outcome Measure Tracking Service</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em;
-        }
-
-        nav {
-            background-color: #444;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-
-        section {
-            padding: 20px;
-        }
-
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .login-container {
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 10px;
-            background-color: #444;
-            color: #fff;
-            text-align: right;
-        }
-
-        .login-container a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 10px;
-        }
-
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -126,7 +48,7 @@
             Utilize our secure submission forms to send patient data to our Google Sheets database. Analyze and visualize
             metrics using tools like Power BI.
         </p>
-        <button onclick="openPopup()">Submit Patient Outcomes</button>
+        <button id="submitBtn">Submit Patient Outcomes</button>
     </section>
 
     <section id="contact">
@@ -139,50 +61,18 @@
 
     <div class="popup" id="popup">
         <h3>Submit Patient Outcomes</h3>
-        <form id="patientOutcomeForm" onsubmit="submitPatientOutcome(); return false;">
-            <label for="patientName">Patient Name:</label>
-            <input type="text" id="patientName" name="patientName" required>
-            <br>
-            <label for="patientDOB">Patient DOB:</label>
-            <input type="date" id="patientDOB" name="patientDOB" required>
-            <br>
-            <label for="outcomeMeasure">Outcome Measure:</label>
-            <input type="text" id="outcomeMeasure" name="outcomeMeasure" required>
-            <br>
-            <label for="score">Score:</label>
-            <input type="number" id="score" name="score" required>
-            <br>
-            <label for="evaluatingTherapist">Evaluating Therapist:</label>
-            <input type="text" id="evaluatingTherapist" name="evaluatingTherapist" required>
-            <br>
-            <button type="submit">Submit</button>
+        <form id="patientOutcomeForm">
+            <!-- Form fields here -->
         </form>
     </div>
 
-    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+    <div class="overlay" id="overlay"></div>
 
     <footer>
         <p>&copy; 2023 PTmeasures. All rights reserved.</p>
     </footer>
 
-    <script>
-        function openPopup() {
-            document.getElementById("popup").style.display = "block";
-            document.getElementById("overlay").style.display = "block";
-        }
-
-        function closePopup() {
-            document.getElementById("popup").style.display = "none";
-            document.getElementById("overlay").style.display = "none";
-        }
-
-        function submitPatientOutcome() {
-            // You can add logic here to submit data to Google Sheets or any other backend service.
-            // For simplicity, this example just closes the popup.
-            closePopup();
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 
 </html>
