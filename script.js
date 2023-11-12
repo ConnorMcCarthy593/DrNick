@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function openPopup() {
     document.getElementById('popup').style.display = 'block';
     document.getElementById('overlay').style.display = 'block';
+    console.log('openPopup function called!');
 }
 
 function closePopup() {
@@ -20,5 +21,6 @@ function closePopup() {
 function submitPatientOutcome() {
     // You can add logic here to submit data to Google Sheets or any other backend service.
     // For simplicity, this example just closes the popup.
+    console.log('submitPatientOutcome function called!');
     closePopup();
 }
