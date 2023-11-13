@@ -5,7 +5,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PTmeasures - Outcome Measure Tracking Service</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth; /* Add smooth scrolling */
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav {
+            background-color: #eee;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 1em;
+            text-decoration: none;
+            color: #333;
+        }
+
+        section {
+            padding: 2em;
+            text-align: center;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 0.5em 1em;
+            border: none;
+            cursor: pointer;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 2em;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .popup-content label {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        .popup-content input,
+        .popup-content select {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -64,9 +148,27 @@
             <span class="close" onclick="closePopup()">&times;</span>
             <h3>Submit Patient Outcomes</h3>
             <form id="patientOutcomeForm">
-                <p>This is a simple popup message.</p>
-            <!-- Form fields here -->
-        </form>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="score">Score:</label>
+                <input type="number" id="score" name="score" required>
+
+                <label for="physician">Physician's Name:</label>
+                <select id="physician" name="physician" required>
+                    <option value="Dr. Nick">Dr. Nick</option>
+                    <option value="Mr. Connor">Mr. Connor</option>
+                </select>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </div>
 
     <div class="overlay" id="overlay"></div>
@@ -75,53 +177,64 @@
         <p>&copy; 2023 PTmeasures. All rights reserved.</p>
     </footer>
 
-     <script>
-            document.addEventListener('DOMContentLoaded', function () {
-             // Wait for the DOM to be fully loaded
-            
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Wait for the DOM to be fully loaded
+
             // Get a reference to the button element by its id
             var submitButton = document.getElementById('submitBtn');
-        
+
             // Add an event listener to the button
             submitButton.addEventListener('click', function () {
                 // This function will be called when the button is clicked
                 openPopup();
             });
-            
-            //document.getElementById('submitBtn').addEventListener('click', openPopup);
+
+            // Add event listeners
             document.getElementById('overlay').addEventListener('click', closePopup);
             document.getElementById('patientOutcomeForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 submitPatientOutcome();
             });
-        });
-        
-        function openPopup() {
-            var popup = document.getElementById('popup');
-             popup.style.display = 'block';
-            //document.getElementById('popup').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-            console.log('openPopup function called!');
-        }
-        
-        // Optional: Add a function to close the popup
+
+            function openPopup() {
+                var popup = document.getElementById('popup');
+                popup.style.display = 'block';
+                document.getElementById('overlay').style.display = 'block';
+                console.log('openPopup function called!');
+            }
+
+            // Optional: Add a function to close the popup
             window.closePopup = function () {
                 var popup = document.getElementById('popup');
                 popup.style.display = 'none';
             };
-        
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-        
-        function submitPatientOutcome() {
-            // You can add logic here to submit data to Google Sheets or any other backend service.
-            // For simplicity, this example just closes the popup.
-            console.log('submitPatientOutcome function called!');
-            closePopup();
-        }
-     </script>
+
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none';
+            }
+
+            function submitPatientOutcome() {
+                // Collect form data
+                var firstName = document.getElementById('firstName').value;
+                var lastName = document.getElementById('lastName').value;
+                var dob = document.getElementById('dob').value;
+                var score = document.getElementById('score').value;
+                var physician = document.getElementById('physician').value;
+
+               // Perform actions with the data (e.g., submit to backend)
+                console.log('First Name:', firstName);
+                console.log('Last Name:', lastName);
+                console.log('Date of Birth:', dob);
+                console.log('Score:', score);
+                console.log('Physician:', physician);
+
+                // For simplicity, this example just closes the popup.
+                closePopup();
+            }
+        });
+    </script>
 </body>
 
 </html>
