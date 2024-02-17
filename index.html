@@ -1,603 +1,510 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PhysioCare Solutions</title>
-        <style>
-            body {
-                font-family: 'Arial', sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f8f8f8;
-            }
-    
-            header {
-                background-color: #333;
-                color: white;
-                text-align: center;
-                padding: 1em;
-            }
 
-            /* Add this style block within the head section of your HTML */
-            .carousel-container {
-                width: 100%;
-                overflow: hidden;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTmeasures - Outcome Measure Tracking Service</title>
+    <style>
 
-            .carousel-images {
-                display: flex;
-                transition: transform 0.5s ease;
-            }
+        @keyframes shake {
+            0% { transform: translateY(0); }
+            25% { transform: translateY(-3px); }
+            50% { transform: translateY(3px); }
+            75% { transform: translateY(-1px); }
+            100% { transform: translateY(1px); }
+        }
 
-            .carousel-image {
-                width: 100%;
-                flex: 0 0 auto;
-            }
+        main {
+            /* Add the following style to allow the content to grow and push the footer down */
+            flex: 1;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('PT_clinic_image.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
 
-             /* Add this style block within the head section of your HTML */
-            .nav-menu {
-                list-style: none;
-                padding: 0;
-                display: flex;
-                gap: 20px; /* Adjust the gap as needed for spacing */
-            }
+            /*This is for having the footer at the very bottom*/
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-            .nav-menu li {
-                margin: 0;
-            }
+        header {
+            background: linear-gradient(45deg, #2c3e50, #193c5f);
+            color: #fff;
+            text-align: center;
+            padding: 2em;
+            margin-bottom: 20px;
+            border-radius: 10px; /* Add rounded corners */
+            /* Add a subtle transparency effect */
+            opacity: 0.9;      
+        }
 
-            .nav-menu a {
-                text-decoration: none;
-                color: white;
-                font-weight: bold;
-                font-size: 16px;
-                transition: color 0.3s ease;
-            }
+         /* Style the page title */
+         header h1 {
+            font-size: 2em; /* Increase font size */
+            margin-bottom: 10px; /* Add some space below the title */
+            /* Add a subtle shadow to the title for depth */
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+        }
 
-            .nav-menu a:hover {
-                color: #3498db; /* Change the color on hover as needed */
-            }
-    
-            main {
-                padding: 20px;
-            }
-    
-            section {
-                margin-bottom: 20px;
-            }
-    
-            h2, h3 {
-                color: #333;
-            }
-    
-            .kpi, .clinician, .patient, .appointment, .feedback-form, .clinician-reports {
-                background-color: white;
-                padding: 15px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                margin-bottom: 15px;
-            }
+        /* Add a subtle shadow to the title for depth */
+        header h1 {
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+        }
 
-            .performance-container {
-                background-color: white;
-                padding: 15px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                margin-bottom: 15px;
-                        }
+        .login-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
 
-            #clinicianSelect {
-                font-size: 16px;
-                padding: 8px;
-            }
+        .login-container a {
+            background-color: #3498db;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
 
-            #clinicianDetailsContainer {
-                background-color: white;
-                padding: 15px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                margin-bottom: 15px;
-            }
+        nav {
+            background-color: #34495e;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-radius: 10px; /* Add rounded corners */
+        }
 
-            #clinicianDetailsContainer .clinician-details {
-                background-color: white;
-                padding: 15px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                margin-bottom: 15px;
-            }
+        section {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly increased opacity for a smoother look */
+            border-radius: 12px; /* Rounded corners for a softer appearance */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adjusted box shadow for a subtle lift effect */
+            margin: 20px auto;
+            overflow: hidden;
+            width: 800px;
+            max-width: 800px;
+            transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions on background-color and box-shadow */
+             /* Style the sections with a shake animation on scroll */
+             will-change: transform; /* Optimize for smoother animation */       
+        }
 
-            #clinicianDetailsContainer .clinician-details h3 {
-                color: #333;
-            }
+        /* Add a class to trigger the shake animation */
+        .shake {
+            animation: shake 0.3s ease-in-out infinite;
+        }
 
-             /* Add a container for the charts with a fixed height and overflow */
-            .chart-container {
-                height: 250px;
-                overflow: auto;
+        /* Hover effect for sections */
+        section:hover {
+            background-color: rgba(255, 255, 255, 1); /* Fully opaque background on hover */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Slightly increased box shadow on hover */
+            button {
+                background-color: #09293f; /* Change to a different color on hover */
+                color: #fff; /* Text color on hover */
             }
-    
-            footer {
-                background-color: #333;
-                color: white;
-                text-align: center;
-                padding: 1em;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-            }
-        </style>
-    </head>
+        }
+
+        /* Active effect for sections */
+        section.active {
+            background-color: #3498db; /* Change to a different color for active sections */
+            color: #fff; /* Text color on active sections */
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3); /* Increased box shadow on active sections */
+        }
+
+        /* Smooth transition for button hover effect */
+        button:hover {
+            background-color: #2c3e50;
+            transition: background-color 0.3s;
+        }
+
+        /* Additional styles for h2 and p tags inside sections */
+        section h2 {
+            color: #333; /* Heading color */
+            margin-bottom: 10px;
+        }
+
+        section p {
+            color: #555; /* Text color */
+            font-size: 16px;
+        }
+
+        /* Smooth transition for anchor links */
+        nav a, button {
+            transition: color 0.3s;
+        }
+
+        /* Hover effect for anchor links */
+        nav a:hover, button:hover {
+            color: #3498db;
+        }
+
+        /* Active effect for anchor links */
+        nav a.active, button.active {
+            color: #2c3e50;
+        }
+
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            /* Add some padding and border-radius for a button-like appearance */
+            padding: 8px 15px;
+            border-radius: 5px;
+            /* Add a subtle transition effect */
+            transition: color 0.9s;        
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            float: left;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .video-container {
+            float: right;
+            width: 300px; /* Adjust the width based on your preference */
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: fixed; /* Change to fixed */
+            top: 50%; /* Adjust the initial vertical position */
+            transform: translateY(-50%); /* Center vertically */
+            right: 0; /* Position on the right side */
+        }
+
+        footer {
+            background-color: #34495e;
+            color: #fff;
+            text-align: center;
+            padding: 0.5em; /* Adjust this value to make the footer shorter */
+            width: 100%;
+        }
+
+        #footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+
 <body>
 
     <header>
-        <h1>PhysioCare Solutions</h1>
-        <!-- Add navigation or user authentication elements here -->
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#clinician-performance">Clinician Performance</a></li>
-                <li><a href="#patient-recovery">Patient Recovery</a></li>
-                <li><a href="#appointment-management">Appointment Management</a></li>
-                <li><a href="#feedback-reporting">Feedback & Reporting</a></li>
-            </ul>
-        </nav>
+        <h1>PTmeasures - Outcome Measure Tracking Service</h1>
     </header>
 
-        <!-- Add this carousel section -->
-        <div class="carousel-container">
-            <div class="carousel-images">
-                <img class="carousel-image" src="PT_clinic_image.png" alt="Image 1">
-                <img class="carousel-image" src="PT_clinic_image.png" alt="Image 2">
-                <img class="carousel-image" src="PT_clinic_image.png" alt="Image 3">
-                <img class="carousel-image" src="PT_clinic_image.png" alt="Image 4">
-                <img class="carousel-image" src="PT_clinic_image.png" alt="Image 5">
-            </div>
-        </div>
+    <div class="login-container">
+        <a href="#login">Login</a>
+        <a href="#signup">Sign Up</a>
+    </div>
 
-    <main>
-        <section id="dashboard">
-            <h2>Dashboard</h2>
-            <div class="kpi">
-                <h3>Total Patients</h3>
-                <p id="totalPatients">120</p>
-            </div>
-            <div class="kpi">
-                <h3>Appointments Today</h3>
-                <p id="appointmentsToday">25</p>
-            </div>
-            <div class="chart-container"></div>
-                <div class="graph">
-                    <h3>Patient Progress Over Time</h3>
-                    <canvas id="patientChart" width="400" height="200"></canvas>
-                </div>
-                <div class="graph">
-                    <h3>Clinician Effectiveness Over Time</h3>
-                    <canvas id="clinicianChart" width="400" height="200"></canvas>
-                </div>
-            </div>
-            <!-- Add more KPIs and charts as needed -->
-        </section>
-    
-        <section id="clinician-performance">
-            <h2>Clinician Performance Tracking</h2>
-            <div class="performance-container">
-                <label for="clinicianSelect">Select Clinician:</label>
-                <select id="clinicianSelect" onchange="updateClinicianPerformance()">
-                    <option value="drSmith">Dr. Smith</option>
-                    <option value="drJohnson">Dr. Johnson</option>
-                    <!-- Add more clinicians as needed -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="home">
+        <h2>Welcome to PTmeasures</h2>
+        <p>
+            PTmeasures provides a sophisticated outcome measure tracking and analysis service tailored for physical therapy
+            clinics and practice owners. Track clinic performance, assess individual clinician effectiveness, and compare
+            data against normative benchmarks. Elevate your practice with PTmeasures.
+        </p>
+    </section>
+
+    <section id="about">
+        <h2>About PTmeasures</h2>
+        <p>
+            PTmeasures is dedicated to delivering a secure and comprehensive outcome measure tracking solution for
+            physical therapy professionals. Our platform empowers clinics to make informed decisions based on real-time
+            data insights.
+        </p>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>
+            PTmeasures offers a secure submission platform to send patient data to our Google Sheets database. Leverage
+            powerful analytics tools like Power BI to visualize clinic and clinician performance metrics. Our service
+            facilitates clinic performance tracking, individual clinician assessment, and normative data comparisons.
+        </p>
+        <button id="submitBtn">Submit Patient Outcomes</button>
+    </section>
+
+    <section id="contact">
+        <h2>Contact PTmeasures</h2>
+        <p>
+            <a href="mailto:info@ptmeasures.com">info@ptmeasures.com</a>
+        </p>
+    </section>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h3>Submit Patient Outcomes</h3>
+            <form id="patientOutcomeForm">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" pattern="[A-Za-z]{3,}" title="Please enter at least 3 letters with no numbers" required>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" pattern="[A-Za-z]{3,}" title="Please enter at least 3 letters with no numbers" required>
+
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="score">Score:</label>
+                <input type="number" id="score" name="score" pattern="[0-9]+" title="Please enter only numbers" required>
+
+                <label for="physician">Physician's Name:</label>
+                <select id="physician" name="physician" required>
+                    <option value="Dr. Nick">Dr. Nick</option>
+                    <option value="Mr. Connor">Mr. Connor</option>
                 </select>
-            </div>
-            <div class="performance-container" id="clinicianDetailsContainer">
-                <!-- Clinician details will be displayed here -->
-                <div id="clinicianDetails" class="clinician">
-                    <div class="clinician" value="drSmith">
-                        <h3>Dr. Smith</h3>
-                        <p>Sessions Completed: 50</p>
-                        <p>Patient Satisfaction: 4.8</p>
-                        <p>Adherence to Treatment Plans: 90%</p>
-                    </div>
-                    <div class="clinician" value="drJohnson">
-                        <h3>Dr. Johnson</h3>
-                        <p>Sessions Completed: 45</p>
-                        <p>Patient Satisfaction: 4.5</p>
-                        <p>Adherence to Treatment Plans: 85%</p>
-                    </div>
-                </div>
-                <!-- Add more clinician information as needed -->            </div>
-        </section>
- 
-        <section id="patient-recovery">
-            <h2>Patient Recovery Monitoring</h2>
-            <div class="patient">
-                <h3>Patient A</h3>
-                <p>Progress: 70%</p>
-                <p>Notes: Session went well, improvement in mobility.</p>
-                <p>Feedback: Positive</p>
-            </div>
-            <div class="patient">
-                <h3>Patient B</h3>
-                <p>Progress: 50%</p>
-                <p>Notes: Addressed pain points, recommended additional exercises.</p>
-                <p>Feedback: Neutral</p>
-            </div>
-            <button onclick="updatePatientRecovery()">Update Recovery</button>
-            <!-- Add more patient information as needed -->
-        </section>
-    
-        <section id="appointment-management">
-            <h2>Appointment Management</h2>
-            <div class="appointment">
-                <h3>Appointment with Dr. Smith</h3>
-                <p>Date: November 15, 2023</p>
-                <p>Time: 2:00 PM</p>
-                <button onclick="cancelAppointment('Dr. Smith', 'November 15, 2023', '2:00 PM')">Cancel Appointment</button>
-            </div>
-            <div class="appointment">
-                <h3>Appointment with Dr. Johnson</h3>
-                <p>Date: November 17, 2023</p>
-                <p>Time: 3:30 PM</p>
-                <button onclick="cancelAppointment('Dr. Johnson', 'November 17, 2023', '3:30 PM')">Cancel Appointment</button>
-            </div>
-            <!-- Implement appointment scheduling and tracking as needed -->
-        </section>
 
-        <section id="feedback-reporting">
-            <h2>Feedback and Reporting</h2>
-            <div class="feedback-form">
-                <h3>Provide Feedback</h3>
-                <form id="feedbackForm">
-                    <label for="feedback">Your Feedback:</label>
-                    <textarea id="feedback" name="feedback" rows="4" cols="50" placeholder="Enter your feedback"></textarea>
-                    <button type="button" onclick="submitFeedback()">Submit Feedback</button>
-                </form>
-                <!-- Add a form for patients to provide feedback -->
-            </div>
-            <!-- Implement feedback and reporting features as needed -->
-        </section>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
 
-        <!-- Other sections will be added in subsequent responses -->
-    </main>
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+
+    <div class="video-container" id="videoContainer">
+        <p>Video embed of product showcase here</p>
+        <video width="100%" height="100%" controls>
+            <source src="PT_Add.MOV" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
     <footer>
-        <p>&copy; 2023 PhysioCare Solutions. All rights reserved.</p>
+        <div id="footer-content">
+            <p>&copy; 2023 PTmeasures. All rights reserved.</p>
+            <p>Contact: <a href="mailto:info@ptmeasures.com">info@ptmeasures.com</a></p>
+        </div>
     </footer>
 
-    <!--<script src="script.js"></script>-->
 
-    <!--interactive feedback submission and a dynamic clinician performance report-->
+
     <script>
-        function submitFeedback() {
-            // Get feedback from the form
-            var feedbackText = document.getElementById('feedback').value;
-
-            // Display a confirmation message
-            alert('Feedback submitted: ' + feedbackText);
-
-            // Clear the form
-            document.getElementById('feedbackForm').reset();
-        }
-
-        // Dummy data for clinician performance reports
-        var clinicianReportsData = [
-            drSmith: [
-                { metric: 'Sessions Completed', value: 50 },
-                { metric: 'Patient Satisfaction', value: 4.8 },
-                { metric: 'Adherence to Treatment Plans', value: 90 }
-                // Add more metrics as needed
-            ],
-            drJohnson: [
-                { metric: 'Sessions Completed', value: 45 },
-                { metric: 'Patient Satisfaction', value: 4.5 },
-                { metric: 'Adherence to Treatment Plans', value: 85 }
-                // Add more metrics as needed
-            ]            // Add more dummy data as needed
-        ];
-
-        // Function to generate and display clinician performance reports
-        function displayClinicianReports() {
-        var selectedClinician = document.getElementById('reportClinicianSelect').value;
-        var clinicianReportsContainer = document.getElementById('clinicianReportsContainer');
-
-        if (clinicianReportsData[selectedClinician]) {
-            var reports = clinicianReportsData[selectedClinician];
-            clinicianReportsContainer.innerHTML = '';
-
-            reports.forEach(function (report) {
-                var reportElement = document.createElement('div');
-                reportElement.classList.add('clinician-report');
-                reportElement.innerHTML = `
-                    <h3>${report.metric}</h3>
-                    <p>${report.value}</p>
-                `;
-                clinicianReportsContainer.appendChild(reportElement);
+        document.addEventListener('DOMContentLoaded', function () {
+            var submitButton = document.getElementById('submitBtn');
+            submitButton.addEventListener('click', function () {
+                openPopup();
             });
-        } else {
-            clinicianReportsContainer.innerHTML = '<p>No reports available for selected clinician.</p>';
-        }
-    }
 
-        // Display clinician reports on page load
-        //displayClinicianReports();
-    </script>
-
-<!--appointment reminders using JavaScript and enhance the dashboard with dynamic charts using the Chart.js library.-->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // Dummy data for dynamic charts
-    var patientData = [40, 60, 30, 80, 20, 50, 70];
-    var appointmentData = [10, 15, 25, 20, 30, 5, 15];
-
-    // Function to update dashboard KPIs
-    function updateDashboardKPIs() {
-        document.getElementById('totalPatients').innerText = patientData.reduce((a, b) => a + b, 0);
-        document.getElementById('appointmentsToday').innerText = appointmentData.reduce((a, b) => a + b, 0);
-    }
-
-    // Function to display dynamic charts
-    function displayCharts() {
-        var ctxPatient = document.getElementById('patientChart').getContext('2d');
-        var ctxAppointment = document.getElementById('appointmentChart').getContext('2d');
-
-        var patientChart = new Chart(ctxPatient, {
-            type: 'line',
-            data: {
-                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                datasets: [{
-                    label: 'Patients',
-                    data: patientData,
-                    borderColor: '#3498db',
-                    borderWidth: 2,
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
-
-        var appointmentChart = new Chart(ctxAppointment, {
-            type: 'bar',
-            data: {
-                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                datasets: [{
-                    label: 'Appointments',
-                    data: appointmentData,
-                    backgroundColor: '#2ecc71',
-                    borderColor: '#27ae60',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
-    }
-
-    // Function to simulate appointment reminders
-    function simulateAppointmentReminders() {
-        setInterval(function () {
-            alert('Reminder: You have an appointment today!');
-        }, 60000); // Remind every 60 seconds for demonstration purposes
-    }
-
-    // Display dynamic charts and start appointment reminders on page load
-    displayCharts();
-    updateDashboardKPIs();
-    simulateAppointmentReminders();
-</script>
-
-<!-- dynamic dropdown for selecting clinicians, and based on the selected clinician, we'll display relevant performance details. -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Dummy data for clinician performance reports
-        var clinicianReportsData = [
-            { clinician: 'Dr. Smith', sessionsCompleted: 50, satisfaction: 4.8, adherence: 90 },
-            { clinician: 'Dr. Johnson', sessionsCompleted: 45, satisfaction: 4.5, adherence: 85 }
-            // Add more dummy data as needed
-        ];
-
-        // Function to generate and display clinician performance reports
-        function displayClinicianReports() {
-            var selectedClinician = document.getElementById('reportClinicianSelect').value;
-            var clinicianReportsContainer = document.getElementById('clinicianReportsContainer');
-
-            var reportsContainer = document.getElementById('clinicianReports');
-            reportsContainer.innerHTML = '';
-
-            clinicianReportsData.forEach(function (report) {
-                var reportElement = document.createElement('div');
-                reportElement.classList.add('clinician');
-                reportElement.innerHTML = `
-                    <h3>${report.clinician}</h3>
-                    <p>Sessions Completed: ${report.sessionsCompleted}</p>
-                    <p>Patient Satisfaction: ${report.satisfaction}</p>
-                    <p>Adherence to Treatment Plans: ${report.adherence}%</p>
-                `;
-                reportsContainer.appendChild(reportElement);
+            document.getElementById('overlay').addEventListener('click', closePopup);
+            document.getElementById('patientOutcomeForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                submitPatientOutcome();
             });
-        }
 
-        // Display clinician reports on page load
-        //displayClinicianReports();
-    </script>
-
-<!-- Patient Recovery Monitoring feature: button click -> simulates updating patient recovery progress and displaying the latest information dynamically.-->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Dummy data for patient recovery
-        var patientRecoveryData = {
-            patientA: { progress: 70, notes: 'Session went well, improvement in mobility.', feedback: 'Positive' },
-            patientB: { progress: 50, notes: 'Addressed pain points, recommended additional exercises.', feedback: 'Neutral' }
-            // Add more patient data as needed
-        };
-
-        // Function to update patient recovery information
-        function updatePatientRecovery() {
-            var selectedPatient = document.getElementById('patientName').innerText.toLowerCase();
-            var recoveryDetailsContainer = document.getElementById('patientRecovery');
-
-            if (patientRecoveryData[selectedPatient]) {
-                var details = patientRecoveryData[selectedPatient];
-                details.progress = Math.min(100, details.progress + 10); // Simulate progress update
-                recoveryDetailsContainer.innerHTML = `
-                    <h3>${selectedPatient}</h3>
-                    <p>Progress: ${details.progress}%</p>
-                    <p>Notes: ${details.notes}</p>
-                    <p>Feedback: ${details.feedback}</p>
-                `;
-            } else {
-                recoveryDetailsContainer.innerHTML = '<p>No data available for selected patient.</p>';
+            function openPopup() {
+                var popup = document.getElementById('popup');
+                popup.style.display = 'block';
+                document.getElementById('overlay').style.display = 'block';
             }
-        }
-    </script>
 
-<!-- Appointment Management feature: a simple appointment scheduling system and implement automated reminders for both patients and clinicians. -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // Dummy data for appointment management
-    var appointmentsData = [
-        { clinician: 'Dr. Smith', date: 'November 15, 2023', time: '2:00 PM' },
-        { clinician: 'Dr. Johnson', date: 'November 17, 2023', time: '3:30 PM' }
-        // Add more appointment data as needed
-    ];
+            window.closePopup = function () {
+                var popup = document.getElementById('popup');
+                popup.style.display = 'none';
+            };
 
-    // Function to cancel an appointment
-    function cancelAppointment(clinician, date, time) {
-        alert(`Appointment with ${clinician} on ${date} at ${time} has been canceled.`);
-        // Implement logic to remove the canceled appointment from the data or update status
-    }
-</script>
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none';
+            }
 
-<!-- Informative graphs and charts to display key performance indicators (KPIs) related to patient recovery and clinician performance. -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // Dummy data for dynamic charts
-    var patientData = [40, 60, 30, 80, 20, 50, 70];
-    var clinicianData = [75, 80, 60, 90, 70, 85, 95];
+            function submitPatientOutcome() {
+                var formData = new FormData(document.getElementById('patientOutcomeForm'));
 
-    // Function to update dashboard KPIs
-    function updateDashboardKPIs() {
-        document.getElementById('totalPatients').innerText = patientData.reduce((a, b) => a + b, 0);
-        document.getElementById('appointmentsToday').innerText = Math.floor(Math.random() * 30) + 1; // Simulate random appointments
-    }
+                fetch('https://script.google.com/macros/s/AKfycbxGOFZEkxXglY6aHfvMXAh8flb6oaosumLjlCHeEY4z9l1IDp1EjPv5ReqmEVgVehBGyg/exec', {
+                    method: 'POST',
+                    body: formData,
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        console.log(data);
+                        closePopup();
+                    })
+                    .catch(error => {
+                        console.error('Error sending data to server:', error);
+                    });
+            }
 
-    // Function to display dynamic charts
-    function displayCharts() {
-        var ctxPatient = document.getElementById('patientChart').getContext('2d');
-        var ctxClinician = document.getElementById('clinicianChart').getContext('2d');
+            // Get all section elements
+            var sections = document.querySelectorAll('section');
 
-        var patientChart = new Chart(ctxPatient, {
-            type: 'line',
-            data: {
-                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                datasets: [{
-                    label: 'Patients',
-                    data: patientData,
-                    borderColor: '#3498db',
-                    borderWidth: 2,
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100 // Set the maximum value for the y-axis
+            // Add mouseenter event listener to each section
+            sections.forEach(function (section) {
+                section.addEventListener('mouseenter', function () {
+                    // Add the 'active' class when the mouse enters the section
+                    this.classList.add('active');
+                });
+
+                section.addEventListener('mouseleave', function () {
+                    // Remove the 'active' class when the mouse leaves the section
+                    this.classList.remove('active');
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            var navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var targetId = this.getAttribute('href').substring(1);
+                    var targetSection = document.getElementById(targetId);
+                    window.scrollTo({
+                        top: targetSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            //Moving the video player while scrolling
+            var videoContainer = document.getElementById('videoContainer');
+
+            window.addEventListener('scroll', function () {
+                // Calculate the offset from the top of the page
+                var offset = window.scrollY;
+
+                // Adjust the top property to keep the video container centered vertically
+                var windowHeight = window.innerHeight;
+                var containerHeight = videoContainer.clientHeight*0;
+                var topValue = Math.max((windowHeight - containerHeight) / 2, 0);
+
+                videoContainer.style.top = topValue + 'px';
+            });
+
+            // Scroll and transition effect
+            //window.addEventListener('scroll', revealOnScroll);
+
+            function revealOnScroll() {
+                var sections = document.querySelectorAll('section');
+                sections.forEach(function (section) {
+                    var windowHeight = window.innerHeight;
+                    var sectionTop = section.getBoundingClientRect().top;
+                    var sectionPoint = 50;
+
+                    if (sectionTop < windowHeight - sectionPoint) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
                     }
-                }
+                });
             }
+
+            // Variable to store the timeout ID
+            var scrollTimeout;
+
+            // Function to add the shake class to sections
+            function addShakeClass() {
+                sections.forEach(function (section) {
+                    section.classList.add('shake');
+                });
+            }
+
+            // Function to remove the shake class from sections
+            function removeShakeClass() {
+                sections.forEach(function (section) {
+                    section.classList.remove('shake');
+                });
+            }
+
+            // Function to handle the scroll event
+            function handleScroll() {
+                // Clear the previous timeout
+                clearTimeout(scrollTimeout);
+
+                // Add the shake class when scrolling stops
+                addShakeClass();
+
+                // Set a timeout to remove the shake class after a delay
+                scrollTimeout = setTimeout(removeShakeClass, 500); // Adjust the delay as needed
+            }
+
+            // Add the scroll event listener
+            window.addEventListener('scroll', handleScroll);
+
         });
 
-        var clinicianChart = new Chart(ctxClinician, {
-            type: 'line',
-            data: {
-                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                datasets: [{
-                    label: 'Clinicians',
-                    data: clinicianData,
-                    borderColor: '#2ecc71',
-                    borderWidth: 2,
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100 // Set the maximum value for the y-axis
-                    }
-                }
-            }
-        });
-    }
-
-    // Display dynamic charts and start updating dashboard KPIs on page load
-    displayCharts();
-    updateDashboardKPIs();
-    setInterval(updateDashboardKPIs, 60000); // Update KPIs every 60 seconds for demonstration purposes
-</script>
-
-<!--dropdown and the clinician details are displayed next to each other with appropriate spacing. -->
-<script>
-    // Dummy data for clinician performance
-    var clinicianData = {
-        drSmith: {ClinicianName:"Dr. Smith", sessionsCompleted: 50, satisfaction: 4.8, adherence: 90 },
-        drJohnson: {ClinicianName:"Dr. Johnson", sessionsCompleted: 45, satisfaction: 4.5, adherence: 85 }
-        // Add more clinician data as needed
-    };
-
-    // Function to update clinician performance details
-    function updateClinicianPerformance() {
-        var selectedClinician = document.getElementById('clinicianSelect').value;
-        var clinicianDetailsContainer = document.getElementById('clinicianDetailsContainer');
-
-        if (clinicianData[selectedClinician]) {
-            var details = clinicianData[selectedClinician];
-            clinicianDetailsContainer.innerHTML = `
-                <div class="clinician-details">
-                    <h3>${details.ClinicianName}</h3>
-                    <p>Sessions Completed: ${details.sessionsCompleted}</p>
-                    <p>Patient Satisfaction: ${details.satisfaction}</p>
-                    <p>Adherence to Treatment Plans: ${details.adherence}%</p>
-                </div>
-            `;
-        } else {
-            clinicianDetailsContainer.innerHTML = '<p>No data available for selected clinician.</p>';
-        }
-    }
-</script>
-
-<script>
-    // Function to cycle through carousel images
-    function cycleCarouselImages() {
-        var carouselImages = document.querySelector('.carousel-images');
-        var imageWidth = document.querySelector('.carousel-image').width;
-        var currentIndex = 0;
-        var totalImages = document.querySelectorAll('.carousel-image').length;
-
-        // Set an interval to cycle through images
-        setInterval(function () {
-            currentIndex = (currentIndex + 1) % totalImages;
-            var transformValue = -currentIndex * imageWidth + 'px';
-            carouselImages.style.transform = 'translateX(' + transformValue + ')';
-        }, 5000); // Change the interval as needed (5000 milliseconds = 5 seconds)
-    }
-
-    // Call the cycleCarouselImages function on page load
-    cycleCarouselImages();
-</script>
-
+    </script>
 </body>
 
-<!-- -->
-</body>
 </html>
