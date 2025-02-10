@@ -392,6 +392,10 @@
             function submitPatientOutcome() {
                 var formData = new FormData(document.getElementById('patientOutcomeForm'));
 
+                <!--
+                    The Google Sheets Database (sitedata owned by nickcoletti97 gmail, but accessible from cem593397) is located at:
+                    https://docs.google.com/spreadsheets/d/1QPMiYp5NhiHsBb8hn0oXiPeZfdUZ7mDiEXuJ7HebFyk/edit?pli=1&gid=0#gid=0
+                -->
                 fetch('https://script.google.com/macros/s/AKfycbxGOFZEkxXglY6aHfvMXAh8flb6oaosumLjlCHeEY4z9l1IDp1EjPv5ReqmEVgVehBGyg/exec', {
                     method: 'POST',
                     body: formData,
